@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # installed apps
     "search",
     "api_keys",
+    # others
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

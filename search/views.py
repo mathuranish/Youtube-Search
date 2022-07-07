@@ -1,10 +1,10 @@
 import requests
-
 from isodate import parse_duration
-
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from api_keys.models import APIKeys
+
 
 videos = []
 
@@ -14,11 +14,12 @@ def index(request):
     if request.method == "POST":
         search_url = "https://www.googleapis.com/youtube/v3/search"
         video_url = "https://www.googleapis.com/youtube/v3/videos"
-
+        # change id to change api key
+        key = APIKeys.objects.get(id=1)
         search_params = {
             "part": "snippet",
             "q": request.POST["search"],
-            "key": "AIzaSyDVz7jAWW88P4XV92o8N5t0Duboq_7nCAQ",
+            "key": str(key),
             "maxResults": 45,
             "type": "video",
             "order": "relevance",
@@ -37,7 +38,7 @@ def index(request):
             return redirect(f"https://www.youtube.com/watch?v={ video_ids[0] }")
 
         video_params = {
-            "key": "AIzaSyDVz7jAWW88P4XV92o8N5t0Duboq_7nCAQ",
+            "key": str(key),
             "part": "snippet,contentDetails",
             "id": ",".join(video_ids),
             "maxResults": 45,
