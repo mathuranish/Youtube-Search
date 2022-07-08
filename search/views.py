@@ -1,6 +1,6 @@
 import requests
+import time
 from isodate import parse_duration
-from django.conf import settings
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from api_keys.models import APIKeys
@@ -10,7 +10,7 @@ videos = []
 
 
 def index(request):
-
+    start_t = time.time()
     if request.method == "POST":
         search_url = "https://www.googleapis.com/youtube/v3/search"
         video_url = "https://www.googleapis.com/youtube/v3/videos"
@@ -70,4 +70,6 @@ def index(request):
         vids = paginator.page(1)
     except EmptyPage:
         vids = paginator.page(paginator.num_pages)
+    total_t = time.time() - start_t
+    # print(total_t)
     return render(request, "search/index.html", {"vids": vids})
