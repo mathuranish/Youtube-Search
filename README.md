@@ -10,13 +10,13 @@ Then, we will have to install the requirements for this Project. So, running the
 
 ```sh
 $ pip install -r requirements.txt
-
+```
 Now we navigate back to our base directory and let's run the server and test this app. 
 
 ```sh
 $ cd Youtube-search/fampay
 $ python manage.py runserver
-
+```
 Redirect to any of the following URLs to check the data being uploaded in table format. 
 
 ```sh
