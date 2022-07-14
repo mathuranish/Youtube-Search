@@ -14,7 +14,7 @@ $ pip install -r requirements.txt
 Now we navigate back to our base directory and let's run the server and test this app. 
 
 ```sh
-$ cd Youtube-search/fampay
+$ cd Youtube-search
 $ python manage.py runserver
 ```
 Redirect to any of the following URLs to check the data being uploaded in table format. 
